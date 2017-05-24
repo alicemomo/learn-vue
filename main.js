@@ -1,11 +1,12 @@
 Vue.component('message', {
 
-  props: ["title", "body"],
+  props: ["title", "body", "initial_visible"],
+
 
   data() {
 
     return {
-      isVisible: true
+      isVisible: this.initial_visible
     };
 
   },
