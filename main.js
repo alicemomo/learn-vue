@@ -12,7 +12,7 @@ Vue.component('message', {
   },
 
   template: `
-    <article class="message" v-if="isVisible" >
+    <article class="message" v-show="isVisible" >
       <div class="message-header">
           {{ title }}
         <button class="delete" @click="hideModal"></button>
@@ -27,7 +27,7 @@ Vue.component('message', {
 
     hideModal() {
       this.isVisible = false;
-    }
+    },
 
   }
 })
