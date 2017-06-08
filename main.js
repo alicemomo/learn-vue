@@ -1,71 +1,31 @@
-// class way
-// window.Event = new Vue() ;
-
-
-// wrapper for $emit and $on functions
-
-window.Event = new class {
-
-  constructor() {
-
-    this.vue = new Vue() ;
-
-  }
-
-
-  fire(event, data = null) {
-
-    this.vue.$emit(event, data) ;
-
-  }
-
-  listen(event, callback) {
-
-    this.vue.$on(event, callback) ;
-
-  }
-
-}
-
-
-Vue.component("coupon", {
+Vue.component("modal", {
 
   template: `
-    <input type="text" @blur="emitApply" placeholder="Enter a coupon code" >
-  `,
 
-  methods: {
+    <div class="modal is-active">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">
+            <slot name="header"></slot>
+          </p>
+          <button class="delete"></button>
+        </header>
+        <section class="modal-card-body">
+          <slot>This is the default body</slot>
+        </section>
+        <footer class="modal-card-foot">
+          <a class="button is-success">Save changes</a>
+          <a class="button">Cancel</a>
+        </footer>
+      </div>
+    </div>
 
-    emitApply() {
-      Event.fire("applied") ;
-    }
-
-  }
+  `
 
 })
 
 
 new Vue({
-  el: "#root",
-
-  data: {
-
-    coupon_applied: false
-
-  },
-
-  methods: {
-
-    applyCoupon() {
-      this.coupon_applied = true ;
-    }
-
-  },
-
-  created() {
-
-    Event.listen("applied", () => this.applyCoupon());
-
-  }
-
+  el: "#root"
 });

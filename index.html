@@ -8,8 +8,10 @@
 </head>
 <body>
 <div id="root">
-  <coupon></coupon>
-  <h1 v-if="coupon_applied">You used a coupon</h1>
+  <modal>
+    <template slot="header">Title of modal</template>
+    This is the body of the modal
+  </modal>
 </div>
   <script type="text/javascript" src="https://unpkg.com/vue@2.3.3"></script>
   <script src="main.js"></script>
